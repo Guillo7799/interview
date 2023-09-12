@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PeopleController;
-use App\Http\Controllers\ClientsController;
 use App\Http\Controllers\EquipmentsController;
 
 /*
@@ -16,11 +16,17 @@ use App\Http\Controllers\EquipmentsController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
 
-// Route::get('/', [PersonaController::class, 'index'])->name('persona');
-Route::get('/people', [PeopleController::class, 'index']);
-Route::post('/', [PeopleController::class, 'store'])->name('persona');
+Route::get('/', [PeopleController::class, 'index']);
+Route::post('/people_confirm', [PeopleController::class, 'store'])->name('persona');
+
+// Route::resource('/',PeopleController::class)->name('add_persona');
+
+
 Route::post('/equipos', [EquipmentsController::class,'index'])->name('equipos');
+Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
