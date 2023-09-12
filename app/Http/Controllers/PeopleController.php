@@ -11,14 +11,16 @@ class PeopleController extends Controller
 {
     public function index()
     {
-        dd('Estoy en la vista del persona');
+        $personas=People::all();
+        //dd($persona);
+        return view('welcome', compact('personas'));
     }
 
     public function store(Request $request)
     {
         
-          dd($request);
-        $this->validate($request,[
+        // dd($request);
+        $this->validate($request,[  
             'name'=>'required|min:4|max:10',
             'email'=>'required|unique:users',
             'lastname'=>'required|min:4|max:10', 
@@ -32,5 +34,7 @@ class PeopleController extends Controller
             'phone'=>$request->phone,
             'identification'=>$request->identification,
         ]);
+
+        return redirect()->back();
     }
 }

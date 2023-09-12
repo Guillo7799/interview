@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+<title>SideralSoft</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -273,8 +273,7 @@ $(document).ready(function(){
 						<h2>Lista <b>Personas</b></h2>
 					</div>
 					<div class="col-sm-6">
-						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Persona</span></a>
-						<a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Eliminar</span></a>						
+						<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Agregar Persona</span></a>							
 					</div>
 				</div>
 			</div>
@@ -287,94 +286,38 @@ $(document).ready(function(){
 								<label for="selectAll"></label>
 							</span>
 						</th>
+						<th>ID</th>
 						<th>Nombre</th>
 						<th>Apellido</th>
 						<th>Correo</th>
+						<th>C.I</th>
 						<th>Teléfono</th>
-						<th>Acción</th>
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox1" name="options[]" value="1">
-								<label for="checkbox1"></label>
-							</span>
-						</td>
-						<td>Thomas Hardy</td>
-						<td>thomashardy@mail.com</td>
-						<td>89 Chiaroscuro Rd, Portland, USA</td>
-						<td>(171) 555-2222</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Eliminar">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox2" name="options[]" value="1">
-								<label for="checkbox2"></label>
-							</span>
-						</td>
-						<td>Dominique Perrier</td>
-						<td>dominiqueperrier@mail.com</td>
-						<td>Obere Str. 57, Berlin, Germany</td>
-						<td>(313) 555-5735</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox3" name="options[]" value="1">
-								<label for="checkbox3"></label>
-							</span>
-						</td>
-						<td>Maria Anders</td>
-						<td>mariaanders@mail.com</td>
-						<td>25, rue Lauriston, Paris, France</td>
-						<td>(503) 555-9931</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox4" name="options[]" value="1">
-								<label for="checkbox4"></label>
-							</span>
-						</td>
-						<td>Fran Wilson</td>
-						<td>franwilson@mail.com</td>
-						<td>C/ Araquil, 67, Madrid, Spain</td>
-						<td>(204) 619-5731</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr>					
-					<tr>
-						<td>
-							<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox5" name="options[]" value="1">
-								<label for="checkbox5"></label>
-							</span>
-						</td>
-						<td>Martin Blank</td>
-						<td>martinblank@mail.com</td>
-						<td>Via Monte Bianco 34, Turin, Italy</td>
-						<td>(480) 631-2097</td>
-						<td>
-							<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-							<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-						</td>
-					</tr> 
+					@foreach ($personas as  $persona)
+						<tr>
+							<td>
+								<span class="custom-checkbox">
+									<input type="checkbox" id="checkbox1" name="options[]" value="1">
+									<label for="checkbox1"></label>
+								</span>
+							</td>
+							<td>{{$persona->id}}</td>
+							<td>{{$persona->name}}</td>
+							<td>{{$persona->lastname}}</td>
+							<td>{{$persona->identification}}</td>
+							<td>{{$persona->email}}</td>
+							<td>{{$persona->phone}}</td>
+							<td>
+								<a href="#editEmployeeModal{{$persona->id}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE254; </i></a>
+								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Editar">&#xE872; </i></a>
+								<a href="#affequipment" class="add" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Agregar Equipos">&#xE872;</i></a>
+							</td>
+						</tr>
+					@endforeach
+					
 				</tbody>
 			</table>
 		</div>
@@ -395,22 +338,22 @@ $(document).ready(function(){
 						<label for="name">Nombre</label>
 						<input type="text" name="name" id="name" class="form-control" required>
 					</div>
+					<div class="form-group">
+						<label for="lastname">Apellido</label>
+						<input type="text" name="lastname" id="lastname" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="identification">Identificación</label>
+						<input class="form-control" name="identification" id="identification" required></input>
+					</div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>					
                     <div class="form-group">
-                        <label for="lastname">Apellido</label>
-						<input type="text" name="lastname" id="lastname" class="form-control" required>
-					</div>
-                    <div class="form-group">
                         <label for="phone">Teléfono</label>
                         <input type="number" name="phone" id="phone" class="form-control" required>
                     </div>
-					<div class="form-group">
-						<label for="identification">Identificación</label>
-						<input class="form-control" name="identification" id="identification" required></input>
-					</div>
 				</div>
 				<div class="modal-footer">
 					<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancelar">
@@ -421,7 +364,7 @@ $(document).ready(function(){
 	</div>
 </div>
 <!-- Edit Modal HTML -->
-<div id="editEmployeeModal" class="modal fade">
+<div id="editEmployeeModal{{$persona->id}}" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form>
@@ -431,23 +374,23 @@ $(document).ready(function(){
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
-						<label for="name">Nombre</label>
+						<label for="name">{{$persona->name}}</label>
 						<input type="text" name="name" id="name" class="form-control" required>
 					</div>
                     <div class="form-group">
-						<label for="lastname">Apellido</label>
+						<label for="lastname">{{$persona->lastname}}</label>
 						<input type="text" name="lastname" id="lastname" class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label for="identification">Identificación</label>
+						<label for="identification">{{$persona->identification}}</label>
 						<input class="form-control" name="identification" id="identification" required></input>
 					</div>
 					<div class="form-group">
-						<label>Phone</label>
+						<label>{{$persona->phone}}</label>
 						<input type="text" class="form-control" required>
 					</div>
                     <div class="form-group">
-						<label for="email">Email</label>
+						<label for="email">{{$persona->email}}</label>
 						<input type="email" name="email" id="email" class="form-control" required>
 					</div>					
 				</div>
